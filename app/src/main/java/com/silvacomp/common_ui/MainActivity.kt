@@ -3,13 +3,21 @@ package com.silvacomp.common_ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.silvacomp.common_ui.ui.theme.CommonuiTheme
 
 class MainActivity : ComponentActivity() {
@@ -34,10 +42,45 @@ fun Greeting(name: String) {
     Text(text = "Hello $name!")
 }
 
+@Composable
+fun MyCustomButton(
+    text: String,
+    background: Color,
+    typeButton: TypeButton,
+    modifier: Modifier,
+    onClick: () -> Unit
+) {
+    Button(
+        onClick = { onClick() },
+        shape = returnTypeShape(typeButton),
+        modifier = modifier.background(background)
+
+    ) {
+        Text(text)
+    }
+
+}
+
+private  fun returnTypeShape(typeButton: TypeButton): Shape{
+    return when(typeButton){
+        TypeButton.Rounded -> RoundedCornerShape(50.dp)
+        TypeButton.Squared -> RoundedCornerShape(0.dp)
+        TypeButton.Circled -> CircleShape
+    }
+}
+
+enum class TypeButton{
+    Rounded,
+    Squared,
+    Circled
+}
+
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     CommonuiTheme {
-        Greeting("Android")
+        MyCustomButton("Android", Color.Black, TypeButton.Circled, Modifier.padding(2.dp)){
+
+        }
     }
 }
