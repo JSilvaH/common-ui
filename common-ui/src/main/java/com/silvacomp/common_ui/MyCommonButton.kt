@@ -18,8 +18,9 @@ fun MyCommonButton(
 }
 
 
-@Preview
+
+@Preview(showBackground = true)
 @Composable
-fun MyButtonPrev() {
-    MyCommonButton("Test")
+fun DefaultPreview() {
+    MyCommonButton("Android")
 }
