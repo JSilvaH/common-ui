@@ -4,8 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
@@ -16,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.silvacomp.common_ui.ui.theme.CommonuiTheme
@@ -52,7 +52,6 @@ fun MyCustomButton(
 ) {
     Button(
         onClick = { onClick() },
-        shape = returnTypeShape(typeButton),
         modifier = modifier.background(background)
 
     ) {
@@ -61,19 +60,7 @@ fun MyCustomButton(
 
 }
 
-private  fun returnTypeShape(typeButton: TypeButton): Shape{
-    return when(typeButton){
-        TypeButton.Rounded -> RoundedCornerShape(50.dp)
-        TypeButton.Squared -> RoundedCornerShape(0.dp)
-        TypeButton.Circled -> CircleShape
-    }
-}
 
-enum class TypeButton{
-    Rounded,
-    Squared,
-    Circled
-}
 
 @Preview(showBackground = true)
 @Composable
