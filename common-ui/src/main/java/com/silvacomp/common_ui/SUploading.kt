@@ -23,15 +23,21 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 @Composable
 fun SUploading(
     title: String?= null,
+    onDismiss: () -> Unit
 
 ) {
-    Dialog(onDismissRequest = { /*TODO*/ }) {
-        Box(modifier = Modifier.size(100.dp).background(color = Color.White, RoundedCornerShape(10.dp)) ){
+    Dialog(onDismissRequest = {
+        onDismiss()
+    }) {
+        Box(modifier = Modifier.size(120.dp).background(color = Color.White, RoundedCornerShape(10.dp)) ){
             Column(
                 modifier = Modifier.fillMaxSize()
             ){
                 UploadingAnimation(modifier = Modifier)
-                Text(text = title?:"")
+                Text(
+                    text = title?:"",
+                    color = Color.Black
+                )
             }
 
         }

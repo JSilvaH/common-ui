@@ -24,7 +24,7 @@ import androidx.compose.ui.window.Dialog
 import com.airbnb.lottie.compose.*
 
 @Composable
-fun SDialog(
+fun SAlert(
     title: String,
     description: String,
     typesAlert: TypesAlert,
@@ -81,7 +81,7 @@ fun SDialog(
                             Button(
                                 onClick = onDismiss,
 //                                shape = Shapes.large,
-                                colors = ButtonDefaults.buttonColors(backgroundColor = Color.Green),
+                                colors = ButtonDefaults.buttonColors(backgroundColor = returnColorButton(typesAlert)),
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .weight(1f)
@@ -131,6 +131,14 @@ private fun returnRawAnimation(typesAlert: TypesAlert): Int {
         TypesAlert.SUCCESS -> R.raw.success
         TypesAlert.INFO -> R.raw.information
         TypesAlert.ERROR -> R.raw.error
+    }
+}
+
+private fun returnColorButton(typesAlert: TypesAlert): Color{
+    return when(typesAlert){
+        TypesAlert.SUCCESS -> Color(0xFF34c759)
+        TypesAlert.INFO -> Color(0xFF4693ff)
+        TypesAlert.ERROR -> Color(0xFFFF6347)
     }
 }
 
